@@ -1,26 +1,39 @@
+// src/App.tsx
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter as Router, Navigate, Route, Routes} from 'react-router-dom';
+import {Container, MantineProvider} from '@mantine/core';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import LoginForm from './components/Auth/LoginForm';
+import RegisterForm from './components/Auth/RegisterForm';
+import '@mantine/core/styles.css';
+import ProtectedRoute from "./components/Auth/ProtectedRoute";
+import Layout from "./components/Layout/Layout";
+import AuthRoute from "./components/Auth/AuthRoute";
+import Dashboard from "./components/Dashboard";
 
-function App() {
+const queryClient = new QueryClient();
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn Reacts
-        </a>
-      </header>
-    </div>
+      <MantineProvider>
+          <QueryClientProvider client={queryClient}>
+              <Container>
+                  <Router>
+                      <Layout>
+                          <Routes>
+                              <Route path="/login" element={<LoginForm/>}/>
+                              <Route path="/register" element={<RegisterForm/>}/>
+                              <Route path="/dashboard" element={<AuthRoute><Dashboard/></AuthRoute>}/>
+                              <Route path="/" element={<ProtectedRoute>
+                                  <Navigate to="/dashboard" replace/>
+                              </ProtectedRoute>}/>
+                          </Routes>
+                      </Layout>
+                  </Router>
+              </Container>
+          </QueryClientProvider>
+      </MantineProvider>
   );
-}
+};
 
 export default App;
