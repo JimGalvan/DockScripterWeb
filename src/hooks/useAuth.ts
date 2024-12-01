@@ -30,7 +30,6 @@ const useAuth = () => {
         try {
             await axiosInstance.post('/Auth/Register', userDto);
             setLoading(false);
-            alert('Registration successful! You can now log in.');
             navigate('/login'); // Redirect to login page after successful registration
         } catch (err) {
             setLoading(false);

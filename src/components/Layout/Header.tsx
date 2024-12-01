@@ -16,12 +16,11 @@ const Header = () => {
     return (
         <Box component="header" p="md" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
             <Box>
-                {isAuthenticated && <Link to="/expenses" style={{marginLeft: '1rem'}}>Expenses</Link>}
-                {isAuthenticated && <Link to="/categories" style={{marginLeft: '1rem'}}>Categories</Link>}
+                {isAuthenticated && <Link to="/dashboard" style={{marginLeft: '1rem'}}>Dashboard</Link>}
             </Box>
             <Box>
                 {isAuthenticated ? (
-                    <Button onClick={handleLogout}>Logout</Button>
+                    <Button variant="light" size="xs" onClick={handleLogout}>Logout</Button>
                 ) : (
                     <>
                         <Link to="/login">Login</Link>

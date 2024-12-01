@@ -7,7 +7,7 @@ import {useRegisterMutation} from '../../queries/authQueries';
 const RegisterForm = () => {
     const form = useForm<UserDto>({
         initialValues: {
-            username: '',
+            email: '',
             password: '',
         },
     });
@@ -17,11 +17,11 @@ const RegisterForm = () => {
     const handleSubmit = (values: UserDto) => {
         register(values, {
             onSuccess: () => {
-                alert('Registration successful! Please log in.');
+                // alert('Registration successful! Please log in.');
                 form.reset();
             },
             onError: (error) => {
-                alert('Registration failed. Please try again.');
+                // alert('Registration failed. Please try again.');
             },
         });
     };
@@ -30,9 +30,9 @@ const RegisterForm = () => {
         <Box mx="auto">
             <form onSubmit={form.onSubmit(handleSubmit)}>
                 <TextInput
-                    label="Username"
-                    placeholder="Enter your username"
-                    {...form.getInputProps('username')}
+                    label="Email"
+                    placeholder="Enter your email"
+                    {...form.getInputProps('email')}
                 />
                 <PasswordInput
                     label="Password"

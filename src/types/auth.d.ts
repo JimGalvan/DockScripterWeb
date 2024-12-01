@@ -1,11 +1,11 @@
 export interface UserDto {
-    username: string;
+    email: string;
     password: string;
 }
 
 export interface UserResponseDto {
     id: string;
-    username: string;
+    email: string;
 }
 
 export interface LoginResponse {

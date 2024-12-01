@@ -7,7 +7,7 @@ import {useLoginMutation} from '../../queries/authQueries';
 const LoginForm = () => {
     const form = useForm<UserDto>({
         initialValues: {
-            username: '',
+            email: '',
             password: '',
         },
     });
@@ -21,7 +21,7 @@ const LoginForm = () => {
     return (
         <Box mx="auto">
             <form onSubmit={form.onSubmit(handleSubmit)}>
-                <TextInput label="Username" {...form.getInputProps('username')} />
+                <TextInput label="Email" {...form.getInputProps('email')} />
                 <PasswordInput label="Password" {...form.getInputProps('password')} />
                 <Button type="submit" mt="sm">
                     Login

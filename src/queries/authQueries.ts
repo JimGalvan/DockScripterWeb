@@ -18,10 +18,9 @@ export const useLoginMutation = () => {
         onSuccess: (data) => {
             setToken(data.token);
             setIsAuthenticated(true);
-            navigate('/expenses');
+            navigate('/dashboard');
         },
         onError: (error) => {
-            alert('Login failed: ' + error.message)
             if (error.message.toString().toLowerCase().includes("token is blacklisted")) {
                 // clear token
                 clearToken();
