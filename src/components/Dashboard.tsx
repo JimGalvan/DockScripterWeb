@@ -1,5 +1,6 @@
 import {Button, Flex} from "@mantine/core";
 import {useNavigate} from "react-router-dom";
+import ScriptList from "./Scripts/ScriptList";
 
 const Dashboard = () => {
     const navigate = useNavigate();
@@ -15,6 +16,7 @@ const Dashboard = () => {
                 {/* Empty div to push the button to the right */}
                 <Button onClick={handleCreateScript}>Create Script</Button>
             </Flex>
+            <ScriptList/>
         </div>
     );
 }

@@ -6,12 +6,12 @@ import {useAddScriptMutation} from '../../queries/scriptQueries';
 const CreateScriptForm = () => {
     const form = useForm({
         initialValues: {
-            name: '', // Script name
-            description: '', // Script description
-            entryFilePath: '', // Path to the main script file
-            language: 'Python', // Default language
-            dockerImage: 'python:3.8', // Default Docker image
-            files: null as File | null, // Single file uploaded by the user
+            name: '',
+            description: '',
+            entryFilePath: '',
+            language: 'Python',
+            dockerImage: 'python:3.8',
+            files: null as File | null,
         },
     });
 
@@ -29,10 +29,10 @@ const CreateScriptForm = () => {
         formData.append('DockerImage', dockerImage);
 
         if (files) {
-            formData.append('UploadedFile', files);
+            formData.append('Files', files);
             const scriptFile = {
                 Name: files.name,
-                Content: '', // Placeholder, content will be handled by the backend if necessary
+                Content: '',
             };
             formData.append('Files', JSON.stringify(scriptFile));
         }
