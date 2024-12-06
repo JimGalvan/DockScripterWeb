@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const API_VERSION = 'v1';
 
 const axiosInstance = axios.create({
-    baseURL: `http://localhost:5262/api/${API_VERSION}`, // Replace with your API base URL
+    baseURL: `http://localhost/api/${API_VERSION}`, // Replace with your API base URL
 });
 
 
