@@ -19,7 +19,7 @@ const getScripts = async () => {
 }
 
 const executScript = async (scriptId: string) => {
-    const {data} = await axiosInstance.post(`/script/${scriptId}/start`);
+    const {data} = await axiosInstance.post(`/script/${scriptId}/execute`);
     return data;
 }
 

@@ -2,6 +2,7 @@ import React from 'react';
 import {Badge, Button, Flex, Group, Text} from '@mantine/core';
 import {ScriptDto} from '../../types/script';
 import {useExecuteScriptMutation} from "../../queries/scriptQueries";
+import '../../css/ScriptItem.css';
 
 interface ScriptItemProps {
     script: ScriptDto;
@@ -24,7 +25,9 @@ const ScriptItem: React.FC<ScriptItemProps> = ({script}) => {
             }}
         >
             <Group>
-                <Text>{script.name}</Text>
+                <a href={""} className="anchor anchor-hover">
+                    <Text>{script.name}</Text>
+                </a>
                 <Badge color="blue" variant="light">
                     {script.language}
                 </Badge>
