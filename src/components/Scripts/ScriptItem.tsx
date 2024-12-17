@@ -1,13 +1,17 @@
 import React from 'react';
 import {Badge, Button, Flex, Group, Text} from '@mantine/core';
 import {ScriptDto} from '../../types/script';
+import {useExecuteScriptMutation} from "../../queries/scriptQueries";
 
 interface ScriptItemProps {
     script: ScriptDto;
-    onRun: (script: ScriptDto) => void;
 }
 
-const ScriptItem: React.FC<ScriptItemProps> = ({script, onRun}) => {
+const ScriptItem: React.FC<ScriptItemProps> = ({script}) => {
+
+    const {mutate: executeScript, isPending} = useExecuteScriptMutation();
+    const scriptId = script.id;
+
     return (
         <Flex
             bg="rgba(255, 255, 255, 1)"
@@ -29,7 +33,7 @@ const ScriptItem: React.FC<ScriptItemProps> = ({script, onRun}) => {
                 <Text size="xs" color="dimmed">
                     Status: {script.status}
                 </Text>
-                <Button variant="outline" size="xs" onClick={() => onRun(script)}>
+                <Button loading={isPending} variant="outline" size="xs" onClick={() => executeScript(scriptId)}>
                     Run
                 </Button>
             </Group>

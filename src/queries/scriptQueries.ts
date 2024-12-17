@@ -18,6 +18,18 @@ const getScripts = async () => {
     return data;
 }
 
+const executScript = async (scriptId: string) => {
+    const {data} = await axiosInstance.post(`/script/${scriptId}/start`);
+    return data;
+}
+
+export function useExecuteScriptMutation() {
+    return useMutation<AxiosResponse<ScriptResponse>, Error, string>(
+        {
+            mutationFn: executScript,
+        });
+}
+
 export function useScriptsQuery() {
     return useQuery<ScriptDto[]>({queryKey: ['scripts'], queryFn: getScripts});
 }

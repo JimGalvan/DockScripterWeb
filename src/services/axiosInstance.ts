@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const API_VERSION = 'v1';
 
 const axiosInstance = axios.create({
-    baseURL: `http://localhost/api/${API_VERSION}`, // Replace with your API base URL
+    baseURL: `http://localhost:80/api/${API_VERSION}`, // Replace with your API base URL
 });
 
 
@@ -41,6 +41,11 @@ axiosInstance.interceptors.response.use(
             errorMessage = error.response.data.message;
         } else if (error.response?.data?.title) {
             errorMessage = error.response.data.title;
+            // this has to be first because the login page is the only one that has a 401 status code
+        } else if (error.response?.status === 401 && window.location.pathname === '/login') {
+            errorMessage = 'Invalid email or password.';
+        } else if (error.response?.status === 401) {
+            errorMessage = 'You are not authorized to perform this action.';
         } else if (error.response?.status === 404) {
             errorMessage = 'Resource not found.';
         } else if (error.response?.status === 500) {
